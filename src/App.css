@@ -1,5 +1,11 @@
+* {
+  margin:0;
+  padding:0;
+}
+
 .App {
   text-align: center;
+  margin:auto;
 }
 
 .App-logo {
@@ -13,9 +19,17 @@
   }
 }
 
+#root{
+  margin:auto;
+}
+
+.popup{
+  width:400px;
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +40,10 @@
 
 .App-link {
   color: #61dafb;
+}
+
+
+.main {
 }
 
 @keyframes App-logo-spin {

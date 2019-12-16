@@ -1,0 +1,9 @@
+#about {
+    margin-top:70px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background:green;
+}
