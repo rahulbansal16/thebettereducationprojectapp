@@ -1,15 +1,20 @@
 import React from 'react';
-import Header from './Header';
-import Particicpant from './Participants';
+// import Header from './Header';
+// import Particicpant from './Participants';
 import './App.css';
-import Participant from './Participants';
-import Login from './Login';
-import Logout from './Logout';
-import HomePage from './HomePage';
-import Contact from './Contact';
-import Class from './Class';
-import Popup from "reactjs-popup";
-import About from './About';
+// import Login from './Login';
+// import Logout from './Logout';
+// import HomePage from './HomePage';
+// import Contact from './Contact';
+// import Class from './Class';
+// import Popup from "reactjs-popup";
+// import About from './About';
+// import ModalModalExample from './LoginLogout';
+import 'semantic-ui-css/semantic.min.css';
+import { Button, Menu, Container  } from 'semantic-ui-react';
+import LoginLogoutModal from './component/LoginLogoutModal';
+import About from './component/About';
+
 
 class App extends React.Component {
 
@@ -19,11 +24,14 @@ class App extends React.Component {
       isInClass:null,
       summaryText:'',
       open:false,
-      isLoggedIn: this.isLoggedIn()
+      isLoggedIn: this.isLoggedIn(),
+      activeItem:"About",
+      openLoginModal: false
     };
     this.showPopUp = this.showPopUp.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.loginLogoutCallback = this.loginLogoutCallback.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
   joinTheClass(){
@@ -67,11 +75,71 @@ class App extends React.Component {
     })
   }
 
-  // 12727828
+
+
+  handleItemClick = (e, { name }) => {
+    console.log("Logging the value of the handleItemClick",e,name);
+    this.setState({ activeItem: name });
+  }
+
+  toogleLoginLogout = (e) => {
+    this.setState({openLoginModal:true});
+  }
+
+  handleClose = () => {
+    this.setState({openLoginModal:false});
+  }
 
   render(){
+    const { activeItem } = this.state
     return <div className="App">
-            <Header isLoggedIn = {this.isLoggedIn} signInSignOut = {this.showPopUp} />
+
+            <Container>
+              <Menu pointing secondary size="massive">
+                <Menu.Item
+                  name='About'
+                  active={ activeItem === 'About' }
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name='Join A Class'
+                  active={ activeItem === 'Join A Class' }
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name='Be A Mentor'
+                  active={ activeItem === 'Be A Mentor' }
+                  onClick={this.handleItemClick}
+                />        
+                <Menu.Item
+                  name='Courses'
+                  active={ activeItem === 'Courses' }
+                  onClick={this.handleItemClick}
+                />                        
+                <Menu.Item
+                  name='Contact'
+                  active={ activeItem === 'Contact' }
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Menu position='right'>
+                  <Menu.Item>
+                    <Button primary as='a' inverted='true' onClick={this.toogleLoginLogout}>
+                      Login
+                    </Button>
+                  </Menu.Item>
+                </Menu.Menu>
+              </Menu>
+              <About/>
+              <LoginLogoutModal isOpen={this.state.openLoginModal} handleClose = {this.handleClose}/>
+
+        {/* <Segment> */}
+          {/* <img src='/images/wireframe/media-paragraph.png' /> */}
+        {/* </Segment> */}
+      </Container>
+            {/* <ModalModalExample/> */}
+            {/* <Button primary>Click Me</Button> */}
+            {/* <Button secondary>Skip</Button> */}
+            {/* <Header isLoggedIn = {this.isLoggedIn} signInSignOut = {this.showPopUp} />
             <Popup         
               open={this.state.open}
               closeOnDocumentClick
@@ -104,7 +172,8 @@ class App extends React.Component {
             </main>
 
             {/* <Router> */}
-            {/* </Router> */} 
+            {/* </Router> */}  
+            
 
           </div>
   };

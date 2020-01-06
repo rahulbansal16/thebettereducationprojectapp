@@ -1,6 +1,7 @@
 import React from 'react';
 // import Participant from './Participants';
 import './Class.css';
+import {Button} from 'semantic-ui-react';
 
 class Class extends React.Component {
 
@@ -53,7 +54,7 @@ class Class extends React.Component {
         return (
             <div>
                 <div className="participant">
-                    <button id = "button" onClick = {onClickHandler}>{text}</button>
+                    <Button id = "button" onClick = {onClickHandler}>{text}</Button>
                 </div>
                 <div>{this.state.summaryText}</div>
             </div>

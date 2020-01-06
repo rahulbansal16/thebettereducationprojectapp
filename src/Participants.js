@@ -1,5 +1,6 @@
 import React from 'react';
 import './Participant.css';
+import { Button } from 'semantic-ui-react';
 
 const style = {
 
@@ -13,7 +14,7 @@ function Participant(props) {
     return (
         <div>
             <div className="participant">
-                <button onClick = {onClickHandler}>{buttonText}</button>
+                <Button onClick = {onClickHandler}>{buttonText}</Button>
             </div>
             <div>{summary}</div>
         </div>
