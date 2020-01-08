@@ -1,6 +1,7 @@
 import React from 'react';
 // import Header from './Header';
 // import Particicpant from './Participants';
+import code from './images/code.jpg';
 import './App.css';
 // import Login from './Login';
 // import Logout from './Logout';
@@ -14,7 +15,20 @@ import 'semantic-ui-css/semantic.min.css';
 import { Button, Menu, Container  } from 'semantic-ui-react';
 import LoginLogoutModal from './component/LoginLogoutModal';
 import About from './component/About';
+import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import Mentor from './component/Mentor';
+import { withRouter } from 'react-router'; 
 
+
+
+const routing = (
+  <Router>
+      <div>
+          <Route exact path="/" component ={<div>fddfd</div>}/>
+          {/* <Route path = "/courses" component = {CoursesScroll}/> */}
+      </div>
+  </Router>
+)
 
 class App extends React.Component {
 
@@ -93,6 +107,7 @@ class App extends React.Component {
   render(){
     const { activeItem } = this.state
     return <div className="App">
+      <Router>
 
             <Container>
               <Menu pointing secondary size="massive">
@@ -100,27 +115,45 @@ class App extends React.Component {
                   name='About'
                   active={ activeItem === 'About' }
                   onClick={this.handleItemClick}
-                />
+                ><Link to = "/about" 
+                style = {{color:'black'}}
+                >About</Link>
+                </Menu.Item>
                 <Menu.Item
                   name='Join A Class'
                   active={ activeItem === 'Join A Class' }
                   onClick={this.handleItemClick}
-                />
+                >
+                  <Link to = "/class"
+                  style = {{color:'black'}}
+                  >Join A Class</Link>
+                </Menu.Item>
                 <Menu.Item
                   name='Be A Mentor'
                   active={ activeItem === 'Be A Mentor' }
                   onClick={this.handleItemClick}
-                />        
+                >
+                  <Link to = "/mentor"
+                  style = {{color:'black'}}
+                  >Be A Mentor</Link>
+                </Menu.Item>
                 <Menu.Item
                   name='Courses'
                   active={ activeItem === 'Courses' }
                   onClick={this.handleItemClick}
-                />                        
+                ><Link to = "courses"
+                style = {{color:'black'}}
+                >Courses</Link>
+                </Menu.Item>
                 <Menu.Item
                   name='Contact'
                   active={ activeItem === 'Contact' }
                   onClick={this.handleItemClick}
-                />
+                >
+                  <Link to = "contact"
+                  style = {{color:'black'}}
+                  >Contact</Link>
+                </Menu.Item>
                 <Menu.Menu position='right'>
                   <Menu.Item>
                     <Button primary as='a' inverted='true' onClick={this.toogleLoginLogout}>
@@ -129,54 +162,21 @@ class App extends React.Component {
                   </Menu.Item>
                 </Menu.Menu>
               </Menu>
-              <About/>
+              {/* <About/> */}
               <LoginLogoutModal isOpen={this.state.openLoginModal} handleClose = {this.handleClose}/>
-
-        {/* <Segment> */}
-          {/* <img src='/images/wireframe/media-paragraph.png' /> */}
-        {/* </Segment> */}
+              <Route exact path="/" component={About} />
+              <Route path="/about" component={About}/>
+              <Route path="/users" component={Welcome} />
+              <Route path="/mentor" component={Mentor}/>
+              {/* <Route path="/contact" component={Contact} /> */}
       </Container>
-            {/* <ModalModalExample/> */}
-            {/* <Button primary>Click Me</Button> */}
-            {/* <Button secondary>Skip</Button> */}
-            {/* <Header isLoggedIn = {this.isLoggedIn} signInSignOut = {this.showPopUp} />
-            <Popup         
-              open={this.state.open}
-              closeOnDocumentClick
-              onClose={this.closeModal}
-            >
-              <div class="popup">
-                {
-                  this.isLoggedIn() ? <Logout loginLogoutCallback={this.loginLogoutCallback}/> : 
-                   <Login loginLogoutCallback={this.loginLogoutCallback}/>
-                }
-              </div>
-            </Popup>
-            <About/>
-            <Class isLoggedIn={this.isLoggedIn}/>
-            <Contact/>
-
-            {/* <HomePage/> */}
-            {/* <Header/> */}
-            {/* <main className = "main">
-              <section id="video">
-                <iframe width="949" height="534" src="https://www.youtube.com/embed/3VTsIju1dLI" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
-                </iframe>
-              </section>
-              { this.state.isInClass ? <Participant buttonText = "Leave the Class" onClick = {this.leaveTheClass}/>:
-                <Particicpant buttonText = "Join the Class" onClick = {this.joinTheClass} />
-              }
-              <section id = "interactions"></section>
-              <Login/>
-              <Logout/>
-            </main>
-
-            {/* <Router> */}
-            {/* </Router> */}  
-            
-
-          </div>
+      </Router>
+      </div>
   };
 }
+
+const Welcome = () => (
+  <div>Welcom</div>
+);
 
 export default App;
