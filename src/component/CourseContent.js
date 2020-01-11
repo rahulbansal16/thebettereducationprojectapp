@@ -4,13 +4,14 @@ import {Container,List, Header} from 'semantic-ui-react';
 const CourseContent = () => (
     <>
         <Container textAlign="left">
-            <Header as ="h1" content = "Course Content" style={{
+            <Header as = "h1" content = "Course Content" style={{
                     fontSize: null ? '2em' : '4em',
                     fontWeight: 'normal',
                     marginBottom: 0,
                     marginTop: null ? '1.5em' : '1.5em',
             }}>
             </Header>
+            <Header as = "h4" content = "The most important thing is to be curious and have the hunger to seek those answers, rest other things will fall in place."></Header>
             <List ordered >
                 <List.Item as='a'>Graphs
                         <List.List>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Embed, Container, Header } from 'semantic-ui-react'
+import { Embed, Container, Header, Grid, Rail } from 'semantic-ui-react'
 
 const EmbedExampleYouTube = () => (
   <Embed
@@ -22,9 +22,17 @@ class Class extends React.Component {
     const {id}  = this.state;
     return (
       <>
-        <Container fluid>
-          <ClassStatus/>  
-          <Embed id = {id} source = "youtube"/>
+        <Container>
+        <ClassStatus/> 
+          <Grid divided columns={2}>
+            <Grid.Column width={12}>
+                {/* <p>left Rail</p> */}
+                <Embed id = {id} source = "youtube"/>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <p>Check this out</p>
+          </Grid.Column>
+          </Grid>
         </Container>
       </>
     );
