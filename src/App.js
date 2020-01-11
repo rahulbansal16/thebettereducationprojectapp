@@ -17,7 +17,9 @@ import LoginLogoutModal from './component/LoginLogoutModal';
 import About from './component/About';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import Mentor from './component/Mentor';
+import EmbedExampleYouTube from './component/Class';
 import { withRouter } from 'react-router'; 
+import CourseContent from './component/CourseContent';
 
 
 
@@ -164,12 +166,14 @@ class App extends React.Component {
               </Menu>
               {/* <About/> */}
               <LoginLogoutModal isOpen={this.state.openLoginModal} handleClose = {this.handleClose}/>
-              <Route exact path="/" component={About} />
-              <Route path="/about" component={About}/>
-              <Route path="/users" component={Welcome} />
-              <Route path="/mentor" component={Mentor}/>
+
               {/* <Route path="/contact" component={Contact} /> */}
       </Container>
+      <Route exact path="/" component={About} />
+              <Route path="/about" component={About}/>
+              <Route path="/class" component={EmbedExampleYouTube} />
+              <Route path="/mentor" component={Mentor}/>
+              <Route path="/courses" component={CourseContent}/>
       </Router>
       </div>
   };
