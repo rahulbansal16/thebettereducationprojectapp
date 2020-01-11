@@ -1,18 +1,8 @@
 import React from 'react';
-// import Header from './Header';
-// import Particicpant from './Participants';
 import code from './images/code.jpg';
 import './App.css';
-// import Login from './Login';
-// import Logout from './Logout';
-// import HomePage from './HomePage';
-// import Contact from './Contact';
-// import Class from './Class';
-// import Popup from "reactjs-popup";
-// import About from './About';
-// import ModalModalExample from './LoginLogout';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Menu, Container  } from 'semantic-ui-react';
+import { Button, Menu, Container, Icon  } from 'semantic-ui-react';
 import LoginLogoutModal from './component/LoginLogoutModal';
 import About from './component/About';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
@@ -20,17 +10,9 @@ import Mentor from './component/Mentor';
 import EmbedExampleYouTube from './component/Class';
 import { withRouter } from 'react-router'; 
 import CourseContent from './component/CourseContent';
+import SocialLogin from 'react-social-login';
+import SocialButton from './component/SocialButton';
 
-
-
-const routing = (
-  <Router>
-      <div>
-          <Route exact path="/" component ={<div>fddfd</div>}/>
-          {/* <Route path = "/courses" component = {CoursesScroll}/> */}
-      </div>
-  </Router>
-)
 
 class App extends React.Component {
 
@@ -42,8 +24,11 @@ class App extends React.Component {
       open:false,
       isLoggedIn: this.isLoggedIn(),
       activeItem:"About",
+      user:{},
+      currentProvider:'',
       openLoginModal: false
     };
+    this.nodes = {};
     this.showPopUp = this.showPopUp.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.loginLogoutCallback = this.loginLogoutCallback.bind(this);
@@ -59,8 +44,11 @@ class App extends React.Component {
   }
 
   isLoggedIn(){
-    var googleResponse = localStorage.getItem('google_response');
-    return googleResponse !== undefined && googleResponse !== null ;
+    var user = localStorage.getItem("user");
+    if (user === null){
+      return false;
+    }
+    return true;
   }
 
   isInClass(){
@@ -91,26 +79,53 @@ class App extends React.Component {
     })
   }
 
-
-
   handleItemClick = (e, { name }) => {
     console.log("Logging the value of the handleItemClick",e,name);
     this.setState({ activeItem: name });
   }
 
   toogleLoginLogout = (e) => {
-    this.setState({openLoginModal:true});
+    // this.setState({openLoginModal:true});
+  }
+
+  handleSocialLogin = (user, err) => {
+    var authenticatedUser = user._profile;
+    localStorage.setItem('user', JSON.stringify(authenticatedUser));
+    this.setState({isLoggedIn:true});
+    console.log(localStorage.getItem('user'));
+  }
+
+  handleSocialLoginFailure = () => {
+    console.log("Login Failed");
   }
 
   handleClose = () => {
     this.setState({openLoginModal:false});
   }
 
+  setNodeRef = (provider, node) => {
+    if (node) {
+      this.nodes[ provider ] = node
+    }
+  }
+
+  logout = () => {
+    const { logged, currentProvider } = this.state
+
+    if (logged && currentProvider) {
+      this.nodes[currentProvider].props.triggerLogout()
+    }
+    localStorage.removeItem('user');
+    this.setState({isLoggedIn:false});
+  }
+
+
   render(){
     const { activeItem } = this.state
     return <div className="App">
+      {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
+      {/* <Button id="customBtn">Yo</Button> */}
       <Router>
-
             <Container>
               <Menu pointing secondary size="massive">
                 <Menu.Item
@@ -128,7 +143,7 @@ class App extends React.Component {
                 >
                   <Link to = "/class"
                   style = {{color:'black'}}
-                  >Join A Class</Link>
+                  >Join A Live Class</Link>
                 </Menu.Item>
                 <Menu.Item
                   name='Be A Mentor'
@@ -158,16 +173,25 @@ class App extends React.Component {
                 </Menu.Item>
                 <Menu.Menu position='right'>
                   <Menu.Item>
-                    <Button primary as='a' inverted='true' onClick={this.toogleLoginLogout}>
-                      Login
-                    </Button>
+                    {
+                      this.state.isLoggedIn === false?
+                      <SocialButton
+                        provider='google'
+                        appId='402641560768-86dk8cskulohe6a9fleer4uuudk1fl34.apps.googleusercontent.com'
+                        onLoginSuccess={this.handleSocialLogin}
+                        onLoginFailure={this.handleSocialLoginFailure}
+                        getInstance={this.setNodeRef.bind(this, 'google')}
+                      >
+                        Login with Google
+                      </SocialButton>
+                      :
+                      // <></>
+                      <Button onClick={this.logout}>Logout</Button>
+                    }
                   </Menu.Item>
                 </Menu.Menu>
               </Menu>
-              {/* <About/> */}
               <LoginLogoutModal isOpen={this.state.openLoginModal} handleClose = {this.handleClose}/>
-
-              {/* <Route path="/contact" component={Contact} /> */}
       </Container>
       <Route exact path="/" component={About} />
               <Route path="/about" component={About}/>
@@ -178,9 +202,4 @@ class App extends React.Component {
       </div>
   };
 }
-
-const Welcome = () => (
-  <div>Welcom</div>
-);
-
 export default App;

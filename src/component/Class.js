@@ -33,6 +33,7 @@ class Class extends React.Component {
             <p>Check this out</p>
           </Grid.Column>
           </Grid>
+          <AudioLink/>
         </Container>
       </>
     );
@@ -42,13 +43,21 @@ class Class extends React.Component {
 
 const ClassStatus = (props) => {
   return (
-    <Header as = 'h1' content = "Learn Computer Science through discussions"    style={{
+    <Header as = 'h1' content = "Learn Computer Science through discussions" textAlign = 'left'   style={{
     fontSize: null ? '2em' : '4em',
     fontWeight: 'normal',
-    marginBottom: 0,
-    marginTop: null ? '1.5em' : '3em',
+    marginTop: null ? '1.5em' : '0.6em',
+    marginBottom: null ? '1.5em' : '0.6em',
   }}></Header>  
   );
 };
+
+const AudioLink = (props) => {
+  return (
+    <>
+      <p>Please join the below link to interact with the class</p>
+    </>
+  );
+}
 
 export default Class;
