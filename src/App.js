@@ -93,8 +93,8 @@ class App extends React.Component {
     console.log(localStorage.getItem('user'));
   }
 
-  handleSocialLoginFailure = () => {
-    console.log("Login Failed");
+  handleSocialLoginFailure = (e) => {
+    console.log("Login Failed",e);
   }
 
   handleClose = () => {
