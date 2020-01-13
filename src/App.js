@@ -177,6 +177,7 @@ class App extends React.Component {
                     {
                       this.state.isLoggedIn === false?
                       <SocialButton
+                        debug
                         provider='google'
                         appId='402641560768-86dk8cskulohe6a9fleer4uuudk1fl34.apps.googleusercontent.com'
                         onLoginSuccess={this.handleSocialLogin}
