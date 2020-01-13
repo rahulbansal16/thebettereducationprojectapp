@@ -2,17 +2,15 @@ import React from 'react';
 import code from './images/code.jpg';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Menu, Container, Icon  } from 'semantic-ui-react';
+import { Button, Menu, Container} from 'semantic-ui-react';
 import LoginLogoutModal from './component/LoginLogoutModal';
 import About from './component/About';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import Mentor from './component/Mentor';
 import EmbedExampleYouTube from './component/Class';
-import { withRouter } from 'react-router'; 
 import CourseContent from './component/CourseContent';
-import SocialLogin from 'react-social-login';
 import SocialButton from './component/SocialButton';
-
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -119,6 +117,9 @@ class App extends React.Component {
     this.setState({isLoggedIn:false});
   }
 
+  sendUserInfo = (user) => {
+    axios.post();
+  }
 
   render(){
     const { activeItem } = this.state
