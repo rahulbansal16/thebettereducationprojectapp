@@ -43,8 +43,8 @@ class Class extends React.Component {
 
 const ClassStatus = (props) => {
   return (
-    <Header as = 'h1' content = "Learn Computer Science through discussions" textAlign = 'left'   style={{
-    fontSize: null ? '2em' : '4em',
+    <Header as = 'h3' content = "The Live Class will start on 19th Sunday 4:00 pm IST" textAlign = 'left'   style={{
+    fontSize: null ? '1.5em' : '2em',
     fontWeight: 'normal',
     marginTop: null ? '1.5em' : '0.6em',
     marginBottom: null ? '1.5em' : '0.6em',
