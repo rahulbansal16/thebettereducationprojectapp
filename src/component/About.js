@@ -1,5 +1,6 @@
 import React from 'react';
 import { Responsive,Container, Header, Button,Icon, Segment, Grid, Image } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom';
 
 // const ResponsiveContainer = ({ children }) => (
 //     <div>
@@ -12,8 +13,12 @@ import { Responsive,Container, Header, Button,Icon, Segment, Grid, Image } from 
 //     children: PropTypes.node,
 //   }
   
+const handleClick = () => {
+  let path  = "/class";
+  let history = useHistory();
+}
 
-const About = () => (
+const About = (props) => (
     <div>
     <Container text id="about" style = {{ height:'100vh'}}>
         <Header as = 'h1' content = "Learn Computer Science through discussions"    style={{
@@ -31,7 +36,7 @@ const About = () => (
         marginTop: null ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
+    <Button primary size='huge' onClick={handleClick}>
       Take a Demo Class
       <Icon name='right arrow' />
     </Button>
@@ -66,4 +71,4 @@ const About = () => (
     </div>
 );
 
-export default About;
+export default withRouter(About);

@@ -91,6 +91,7 @@ class App extends React.Component {
     localStorage.setItem('user', JSON.stringify(authenticatedUser));
     this.setState({isLoggedIn:true});
     console.log(localStorage.getItem('user'));
+    this.sendUserInfo(user);
   }
 
   handleSocialLoginFailure = (e) => {
@@ -118,7 +119,13 @@ class App extends React.Component {
   }
 
   sendUserInfo = (user) => {
-    axios.post();
+    axios.post(`https://t865tul3o8.execute-api.ap-south-1.amazonaws.com/prod/users`, { user })
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    }).catch(err =>{
+      console.error(err);
+    });
   }
 
   render(){
@@ -127,7 +134,7 @@ class App extends React.Component {
       {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
       {/* <Button id="customBtn">Yo</Button> */}
       <Router>
-            <Container>
+            <Container  textAlign='center'>
               <Menu pointing secondary size="massive">
                 <Menu.Item
                   name='About'

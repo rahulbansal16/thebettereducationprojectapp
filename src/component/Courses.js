@@ -1,7 +1,5 @@
 import React from 'react';
 import { Responsive,Container, Header, Button,Icon, Segment, Grid, Image } from 'semantic-ui-react'
-import code from '../images/code.jpg';
-import bulb from '../images/bulb.jpg';
 
 
 const Courses = (props) => {
