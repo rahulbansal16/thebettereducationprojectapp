@@ -14,8 +14,8 @@ import { withRouter } from 'react-router-dom';
 //   }
   
 const handleClick = () => {
-  let path  = "/class";
-  let history = useHistory();
+  // let path  = "/class";
+  // let history = useHistory();
 }
 
 const About = (props) => (
