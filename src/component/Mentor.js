@@ -4,15 +4,15 @@ import { Responsive,Container, Header, Button,Icon, Segment, Grid, Image, Menu }
 const Mentor = () => (
     <>
     <Container text id="about">
-        <Header as = 'h1' content = "Become a Mentor to our awesome community"    style={{
-        fontSize: null ? '2em' : '4em',
+        <Header as = 'h1' content = "We Learn better by Teaching Not by just Learning"    style={{
+        fontSize: null ? '2em' : '3em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: null ? '1.5em' : '3em',
+        marginTop: null ? '1.5em' : '1em',
       }}></Header>
     <Header
       as='h2'
-      content='Learn, Teach and Grow with the community'
+      content='Join our Mentor community'
       style={{
         fontSize: null ? '1.5em' : '1.7em',
         fontWeight: 'normal',

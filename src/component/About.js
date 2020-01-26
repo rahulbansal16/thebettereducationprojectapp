@@ -1,6 +1,8 @@
 import React from 'react';
 import { Responsive,Container, Header, Button,Icon, Segment, Grid, Image } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
+import URLBarContainer from './URLBar';
+import How from './How';
 
 // const ResponsiveContainer = ({ children }) => (
 //     <div>
@@ -20,14 +22,15 @@ const handleClick = () => {
 
 const About = (props) => (
     <div>
-    <Container text id="about" style = {{ height:'100vh'}}>
-        <Header as = 'h1' content = "Learn Computer Science through discussions"    style={{
-        fontSize: null ? '2em' : '4em',
+    <Container text id="about">
+
+        <Header as = 'h1' content = "Learn Computer Science through discussions with peers"  style={{
+        fontSize: null ? '2em' : '3em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: null ? '1.5em' : '3em',
+        marginTop: null ? '1.5em' : '2em',
       }}></Header>
-    <Header
+    {/* <Header
       as='h2'
       content='We learn best in groups and through discussions'
       style={{
@@ -35,13 +38,17 @@ const About = (props) => (
         fontWeight: 'normal',
         marginTop: null ? '0.5em' : '1.5em',
       }}
-    />
-    <Button primary size='huge' onClick={handleClick}>
+    /> */}
+    {/* <Button primary size='huge' onClick={handleClick}>
       Take a Demo Class
       <Icon name='right arrow' />
-    </Button>
+    </Button> */}
+    <URLBarContainer isLoggedIn='true'/>
+
     </Container>
-    <Responsive>
+    <How></How>
+
+    {/* <Responsive>
     <Segment style={{ padding: '8em 0em' }} vertical>
         <Grid container >
             <Grid.Row>
@@ -67,7 +74,7 @@ const About = (props) => (
             </Grid.Row>
         </Grid>
     </Segment>
-    </Responsive>
+    </Responsive> */}
     </div>
 );
 

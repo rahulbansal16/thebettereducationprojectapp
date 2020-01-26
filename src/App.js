@@ -11,6 +11,8 @@ import EmbedExampleYouTube from './component/Class';
 import CourseContent from './component/CourseContent';
 import SocialButton from './component/SocialButton';
 import axios from 'axios';
+import How from './component/How';
+import { URLBarContainer } from './component/URLBar';
 
 class App extends React.Component {
 
@@ -149,7 +151,7 @@ class App extends React.Component {
                   active={ activeItem === 'Join A Class' }
                   onClick={this.handleItemClick}
                 >
-                  <Link to = "/class"
+                  <Link to = "/class/default"
                   style = {{color:'black'}}
                   >Join A Live Class</Link>
                 </Menu.Item>
@@ -166,7 +168,7 @@ class App extends React.Component {
                   name='Courses'
                   active={ activeItem === 'Courses' }
                   onClick={this.handleItemClick}
-                ><Link to = "courses"
+                ><Link to = "/courses"
                 style = {{color:'black'}}
                 >Courses</Link>
                 </Menu.Item>
@@ -175,7 +177,7 @@ class App extends React.Component {
                   active={ activeItem === 'Contact' }
                   onClick={this.handleItemClick}
                 >
-                  <Link to = "contact"
+                  <Link to = "/contact"
                   style = {{color:'black'}}
                   >Contact</Link>
                 </Menu.Item>
@@ -204,10 +206,11 @@ class App extends React.Component {
       </Container>
       <Route exact path="/" component={About} />
               <Route path="/about" component={About}/>
-              <Route path="/class" component={EmbedExampleYouTube} />
+              <Route path={`/class/:classId`} component={EmbedExampleYouTube} />
               <Route path="/mentor" component={Mentor}/>
               <Route path="/courses" component={CourseContent}/>
       </Router>
+      {/* <URLBarContainer/> */}
       </div>
   };
 }

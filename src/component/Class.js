@@ -1,8 +1,11 @@
 import React from 'react'
+import {Route} from 'react-router-dom';
 import { Embed, Container, Header, Grid, Rail, Button,Card, Icon, Segment } from 'semantic-ui-react'
 import ScriptTag from 'react-script-tag';
 // import vynch form './MyCircle.js';
 import {showDiv} from './MyCircle';
+import axios from 'axios';
+
 
 
 const EmbedExampleYouTube = () => (
@@ -18,13 +21,65 @@ class Class extends React.Component {
   constructor(props){
     super(props);
     this.video = React.createRef();
+    this.link = this.props.match.url;
+    this.videoId = '13-23362-480';
     this.state = {
-      id: 'O6Xo21L0ybE'
+      id: 'O6Xo21L0ybE',
+      showDefaultMessage:false
     }
   }
 
   componentDidMount(){
-    showDiv(this.video,'13-23362-480');
+    axios.get('https://t865tul3o8.execute-api.ap-south-1.amazonaws.com/prod/class', { params: { 'link': this.link } })
+    .then(res => {
+        if (res != null){
+          this.videoId = res.mycircleid;
+          if (this.videoId === null){
+            this.setState({showDefaultMessage:true})
+          }
+          else{
+            showDiv(this.video,this.videoId);
+          }
+        }
+    }).catch( err => {
+      console.error("Error resolving the link to the video url",err);
+      showDiv(this.video,this.videoId);
+      // this.setState({showDefaultMessage:true})
+    });
+  }
+
+  renderVideo = () => {
+    // console.log(this.props.match.params);
+    return(
+      <>
+      <h1>Yes this heading is going to be displayed</h1>
+      <div ref={this.video} style={{marginLeft:'0px', display:'flex', width:'100%', height:'auto', justifyContent:'center', alignItems:'center'}}></div> 
+      </>
+    );
+  }
+
+  showDefaultMessageContainer = () => {
+    return (
+      <>
+      <Container>
+        <Header as = 'h1' content = "Thanks for your patience" textAlign="center" style={{
+        fontSize: null ? '2em' : '2em',
+        fontWeight: 'normal',
+        color:'red',
+        marginBottom: 0,
+        marginTop: null ? '1.5em' : '2em',
+      }}></Header>
+      
+        <Header as = 'h1' textAlign="center" content = "Your class is not ready yet. We will inform you once it is ready."  style={{
+        fontSize: null ? '2em' : '2em',
+        fontWeight: 'normal',
+        marginBottom: 0,
+        color:'red',
+        marginTop: null ? '1.5em' : '1.5em',
+      }}></Header>
+      </Container>
+      </>
+    );
   }
 
   render(){
@@ -36,7 +91,13 @@ class Class extends React.Component {
           <Grid.Row style={{height:'100%'}}>
             <Grid.Column width={12} style={{ height:'100%'}}>
                 <ClassStatus/> 
+                {/* <Route path={`/class/:classId`} componentDidMount={this.renderVideo()}/> */}
                 <div ref={this.video} style={{marginLeft:'0px', display:'flex', width:'100%', height:'auto', justifyContent:'center', alignItems:'center'}}></div>
+                {
+                  this.state.showDefaultMessage?
+                  this.showDefaultMessageContainer()
+                  :<></>
+                }
             </Grid.Column>
             <Grid.Column textAlign = "left" width={4}>
               <SubtitlesHelper></SubtitlesHelper>
