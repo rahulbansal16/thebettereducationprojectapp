@@ -12,7 +12,7 @@ export class URLBarContainer extends React.Component {
           return null;
         }
         return JSON.parse(user)["email"];
-      }
+    }
 
     constructor(props){
         super(props);

@@ -92,6 +92,12 @@ class Class extends React.Component {
             <Grid.Column width={12} style={{ height:'100%'}}>
                 <ClassStatus/> 
                 {/* <Route path={`/class/:classId`} componentDidMount={this.renderVideo()}/> */}
+                {
+                  !this.state.showDefaultMessage?
+                  <Header as = "h1" content = "Class First - Intro to Graphs" textAlign="center"></Header>:
+                  <></>
+
+                }
                 <div ref={this.video} style={{marginLeft:'0px', display:'flex', width:'100%', height:'auto', justifyContent:'center', alignItems:'center'}}></div>
                 {
                   this.state.showDefaultMessage?

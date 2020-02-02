@@ -1,5 +1,7 @@
 import React from 'react'
 import {Container,List, Header} from 'semantic-ui-react';
+import Course from './Course';
+// import list from './Course';
 
 const CourseContent = () => (
     <>
@@ -12,7 +14,7 @@ const CourseContent = () => (
             }}>
             </Header>
             <Header as = "h4" content = "The most important thing is to be curious and have the hunger to seek those answers, rest other things will fall in place."></Header>
-            <List ordered >
+            {/* <List ordered >
                 <List.Item as='a'>Graphs
                         <List.List>
                             <List.Item>Origin of Graph Theory</List.Item>
@@ -30,8 +32,8 @@ const CourseContent = () => (
                         </List.List>
                 </List.Item>
                 <List.Item as='a'>Arrays</List.Item>
-            </List>
-
+            </List> */}
+            <Course topic=""/>
         </Container>
     </>
 );

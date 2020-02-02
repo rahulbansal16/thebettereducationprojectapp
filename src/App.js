@@ -12,7 +12,10 @@ import CourseContent from './component/CourseContent';
 import SocialButton from './component/SocialButton';
 import axios from 'axios';
 import How from './component/How';
-import { URLBarContainer } from './component/URLBar';
+import Course from './component/Course';
+
+
+
 
 class App extends React.Component {
 
@@ -209,6 +212,8 @@ class App extends React.Component {
               <Route path={`/class/:classId`} component={EmbedExampleYouTube} />
               <Route path="/mentor" component={Mentor}/>
               <Route path="/courses" component={CourseContent}/>
+
+              {/* <Course topic ={list}/> */}
       </Router>
       {/* <URLBarContainer/> */}
       </div>
