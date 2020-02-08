@@ -53,7 +53,7 @@ const videoList = [
     },
     {
         id:7,
-        title:"Question",
+        title:"Questions",
         image:Questions,
         link:"/class/question",
         description:"Questions related to the Graph Representation"
@@ -64,6 +64,20 @@ const videoList = [
         image:GraphRepresentation,
         link:"/class/bfsanddfs",
         description:"Intro to BFS and DFS Algorithm"
+    },
+    {
+        id:9,
+        title:"Infix to Postfix Expression",
+        image:Complexity,
+        link:"/class/infixtopostfix",
+        description:"How to convert Infix to Postfix Expression"
+    },
+    {
+        id:10,
+        title:"Call Stack",
+        image:Questions,
+        link:'/class/callstack',
+        description:"What happens when a recursive function calls are made"
     }
 ];
 

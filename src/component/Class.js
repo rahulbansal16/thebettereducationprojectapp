@@ -12,7 +12,9 @@ const linkToCircleId = {
   adjmatrix:'1166-231-904',
   complexity:'2530-7614-00',
   question:'1053-11-2555',
-  bfsanddfs:'20-902280-58'
+  bfsanddfs:'20-902280-58',
+  infixtopostfix:'47-12371-218',
+  callstack:'2126-4146-09'
 }
 
 class Class extends React.Component {
