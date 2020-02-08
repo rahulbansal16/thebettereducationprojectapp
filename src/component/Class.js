@@ -1,20 +1,19 @@
 import React from 'react'
-import {Route} from 'react-router-dom';
 import { Embed, Container, Header, Grid, Rail, Button,Card, Icon, Segment } from 'semantic-ui-react'
-import ScriptTag from 'react-script-tag';
 // import vynch form './MyCircle.js';
 import {showDiv} from './MyCircle';
 import axios from 'axios';
 
-
-
-const EmbedExampleYouTube = () => (
-  <Embed
-    id='O6Xo21L0ybE'
-    placeholder='/images/image-16by9.png'
-    source='youtube'
-  />
-)
+const linkToCircleId = {
+  bridgeproblem:'3384-842-572',
+  bridgeproblemsolution:'224-352-1934',
+  graphterminology:'32-8494-6672',
+  adjlist:'3161-30-3928',
+  adjmatrix:'1166-231-904',
+  complexity:'2530-7614-00',
+  question:'1053-11-2555',
+  bfsanddfs:'20-902280-58'
+}
 
 class Class extends React.Component {
 
@@ -29,9 +28,29 @@ class Class extends React.Component {
     }
   }
 
+  fetchTheCircleId = (link) => {
+    let links = link.split("/")
+    let circleId = linkToCircleId[links[2]]
+    return circleId;
+    // return linkToCircleId[link]
+  }
+
+  isCallToServerRequired = (link) => {
+    let circleId = this.fetchTheCircleId(link);
+    if (circleId === undefined){
+      return true;
+    }
+    return false;
+  }
+
   componentDidMount(){
-    axios.get('https://t865tul3o8.execute-api.ap-south-1.amazonaws.com/prod/class', { params: { 'link': this.link } })
-    .then(res => {
+    var prms; 
+    if (!this.isCallToServerRequired(this.link)){
+      prms = Promise.resolve({mycircleid: this.fetchTheCircleId(this.link)});
+    } else {
+      prms = axios.get('https://t865tul3o8.execute-api.ap-south-1.amazonaws.com/prod/class', { params: { 'link': this.link } })
+    }
+    prms.then(res => {
         if (res != null){
           this.videoId = res.mycircleid;
           if (this.videoId === null){
@@ -219,16 +238,5 @@ const SubtitlesHelper = () => {
     </>
   );
 };
-
-const AudioLink = (props) => {
-  return (
-    <>
-      <p>Please join the below link to interact with the class</p>
-      <Button color='linkedin'>
-      <Icon name='discord' /> Discord
-    </Button>
-    </>
-  );
-}
 
 export default Class;

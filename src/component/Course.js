@@ -1,6 +1,7 @@
 import React from 'react';
 import {List, Icon} from 'semantic-ui-react';
 import AssignmentSubmit from './AssignmentSubmit';
+import axios from 'axios';
 
 var list = {
     name : "Algorithms",
@@ -189,36 +190,23 @@ var list = {
             }
           ],
       }
-      //   {
-      //     name : "Graphs",
-      //     videoUrl:"",
-      //     codeUrl:"",
-      //     subTopics: [
-      //         {
-      //             topic : "Adjacency List",
-      //             videoUrl:"",
-      //             codeUrl:"",
-      //             subTopics:[]
-      //         }
-      //     ],
-      // }
     ],
 }
 
 class Course extends React.Component {
 
-    // topic = this.props.topic;
-    // topic = list;
-
     constructor(props) {
         super(props);
-        // this.props.topic = list;
-        // this.props.assignmentTopic = null;
         this.state  = {
             openAssignment:false,
-            assignmentTopic:null
+            assignmentTopic:null,
+            completedAssignment:[]
         }
-        // this.state = { count: 0 };
+        this.user = localStorage.getItem("user");
+        this.completedAssignmentMap = {};
+        if ( this.user != null) {
+            this.user = JSON.parse(this.user);
+        }
     }
 
     closeModal = () =>{
@@ -227,7 +215,24 @@ class Course extends React.Component {
         )
     }
 
+    getAssignmentsForUser = () => {
+        axios.get('https://t865tul3o8.execute-api.ap-south-1.amazonaws.com/prod/assignment', { params: { 'email': this.user["email"] } }).then(res => {
+            res.map( (assignment) => 
+                {this.completedAssignmentMap[assignment.id] = true;}
+            );
+            this.setState(
+                {
+                    completedAssignment:res
+                }
+            );
+        }).catch( res => {
+            console.log("Got an Error Fetching the Resultz");
+        })
+    }
 
+    componentDidMount = () => {
+        this.getAssignmentsForUser();
+    }
 
     render(){ 
         return (<>
@@ -241,10 +246,13 @@ class Course extends React.Component {
     </>);
     }
 
+    isPrsent = (course, completedAssignment) => {
+
+    }
 
     generateTick = (individualCourse) => {
         return(
-            <Icon name="check" style={{marginLeft:'10px', color:'green'}}></Icon>
+            this.completedAssignmentMap[individualCourse.id]?<Icon name="check" style={{marginLeft:'10px', color:'green'}}></Icon>:<></>
         );
     }
 

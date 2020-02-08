@@ -13,6 +13,7 @@ import SocialButton from './component/SocialButton';
 import axios from 'axios';
 import How from './component/How';
 import Course from './component/Course';
+import Videos from './component/Videos';
 
 
 
@@ -168,12 +169,20 @@ class App extends React.Component {
                   >Be A Mentor</Link>
                 </Menu.Item>
                 <Menu.Item
-                  name='Courses'
-                  active={ activeItem === 'Courses' }
+                  name='Course Content'
+                  active={ activeItem === 'Course Content' }
                   onClick={this.handleItemClick}
                 ><Link to = "/courses"
                 style = {{color:'black'}}
                 >Courses</Link>
+                </Menu.Item>
+                <Menu.Item
+                  name="videos"
+                  active = {activeItem === "Videos"}
+                  onClick = {this.handleItemClick}
+                ><Link to = "/videos"
+                  style = {{color:'black'}}
+                  >Videos</Link>
                 </Menu.Item>
                 <Menu.Item
                   name='Contact'
@@ -212,6 +221,7 @@ class App extends React.Component {
               <Route path={`/class/:classId`} component={EmbedExampleYouTube} />
               <Route path="/mentor" component={Mentor}/>
               <Route path="/courses" component={CourseContent}/>
+              <Route path="/videos" component={Videos}/>
 
               {/* <Course topic ={list}/> */}
       </Router>
