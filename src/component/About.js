@@ -21,8 +21,8 @@ const handleClick = () => {
 }
 
 const About = (props) => (
-    <div>
-    <Container text id="about">
+    <>
+    <Container text id="about" style={{'height':'90vh'}}>
 
         <Header as = 'h1' content = "Learn Computer Science through discussions with peers"  style={{
         fontSize: null ? '2em' : '3em',
@@ -75,7 +75,7 @@ const About = (props) => (
         </Grid>
     </Segment>
     </Responsive> */}
-    </div>
+    </>
 );
 
 export default withRouter(About);

@@ -2,7 +2,7 @@ import React from 'react';
 import code from './images/code.jpg';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Menu, Container} from 'semantic-ui-react';
+import { Button, Menu, Container,Icon} from 'semantic-ui-react';
 import LoginLogoutModal from './component/LoginLogoutModal';
 import About from './component/About';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
@@ -141,58 +141,60 @@ class App extends React.Component {
       {/* <Button id="customBtn">Yo</Button> */}
       <Router>
             <Container  textAlign='center'>
-              <Menu pointing secondary size="massive">
+              <Menu pointing secondary size="massive" stackable>
                 <Menu.Item
+                  as = {Link}
+                  to = "/about"
+                  color = 'black'
                   name='About'
                   active={ activeItem === 'About' }
                   onClick={this.handleItemClick}
-                ><Link to = "/about" 
-                style = {{color:'black'}}
-                >About</Link>
-                </Menu.Item>
+                  content="About"
+                />
                 <Menu.Item
+                  as = {Link}
+                  to = "/class/default"
+                  color = 'black'
                   name='Join A Class'
                   active={ activeItem === 'Join A Class' }
                   onClick={this.handleItemClick}
-                >
-                  <Link to = "/class/default"
-                  style = {{color:'black'}}
-                  >Join A Live Class</Link>
-                </Menu.Item>
+                  content = "Join A Live Class"
+                />
                 <Menu.Item
+                  as = {Link}
+                  to = "/mentor"
+                  color = 'black'
                   name='Be A Mentor'
                   active={ activeItem === 'Be A Mentor' }
                   onClick={this.handleItemClick}
-                >
-                  <Link to = "/mentor"
-                  style = {{color:'black'}}
-                  >Be A Mentor</Link>
-                </Menu.Item>
+                  content = "Be A Mentor"
+                />
                 <Menu.Item
-                  name='Course Content'
+                  as = {Link}
+                  to = "/courses"
+                  color = 'black'
+                  name='Courses'
                   active={ activeItem === 'Course Content' }
                   onClick={this.handleItemClick}
-                ><Link to = "/courses"
-                style = {{color:'black'}}
-                >Courses</Link>
-                </Menu.Item>
+                />
                 <Menu.Item
+                  as = {Link}
+                  to = "/videos"
+                  color = 'black'                
                   name="videos"
                   active = {activeItem === "Videos"}
                   onClick = {this.handleItemClick}
-                ><Link to = "/videos"
-                  style = {{color:'black'}}
-                  >Videos</Link>
-                </Menu.Item>
+                  content = "Videos"
+                />
                 <Menu.Item
+                  as = {Link}
+                  to = "/contact"
+                  color = 'black'                                
                   name='Contact'
                   active={ activeItem === 'Contact' }
                   onClick={this.handleItemClick}
-                >
-                  <Link to = "/contact"
-                  style = {{color:'black'}}
-                  >Contact</Link>
-                </Menu.Item>
+                  content="Contact"
+                />
                 <Menu.Menu position='right'>
                   <Menu.Item>
                     {
