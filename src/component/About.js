@@ -4,47 +4,20 @@ import { withRouter } from 'react-router-dom';
 import URLBarContainer from './URLBar';
 import How from './How';
 
-// const ResponsiveContainer = ({ children }) => (
-//     <div>
-//       <DesktopContainer>{children}</DesktopContainer>
-//       <MobileContainer>{children}</MobileContainer>
-//     </div>
-//   )
-  
-//   ResponsiveContainer.propTypes = {
-//     children: PropTypes.node,
-//   }
-  
-const handleClick = () => {
-  // let path  = "/class";
-  // let history = useHistory();
-}
-
 const About = (props) => (
     <>
-    <Container text id="about" style={{'height':'90vh'}}>
+    <Container text id="about" style={{'height':'90vh', 'display': 'flex',
+      'alignItems':'center','justifyContent':'center',
+      'flexDirection':'column'
+   }}>
 
-        <Header as = 'h1' content = "Learn Computer Science through discussions with peers"  style={{
-        fontSize: null ? '2em' : '3em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: null ? '1.5em' : '2em',
-      }}></Header>
-    {/* <Header
-      as='h2'
-      content='We learn best in groups and through discussions'
-      style={{
-        fontSize: null ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: null ? '0.5em' : '1.5em',
-      }}
-    /> */}
-    {/* <Button primary size='huge' onClick={handleClick}>
-      Take a Demo Class
-      <Icon name='right arrow' />
-    </Button> */}
+    <Header as = 'h1' content = "Learn Computer Science through discussions with peers"  style={{
+      fontSize: null ? '2em' : '3em',
+      fontWeight: 'normal',
+      marginBottom: 0,
+      marginTop: null ? '1.5em' : '2em',
+    }}></Header>
     <URLBarContainer isLoggedIn='true'/>
-
     </Container>
     <How></How>
 
