@@ -1,5 +1,4 @@
 import React from 'react';
-import code from './images/code.jpg';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Menu, Container,Icon} from 'semantic-ui-react';
@@ -11,8 +10,6 @@ import EmbedExampleYouTube from './component/Class';
 import CourseContent from './component/CourseContent';
 import SocialButton from './component/SocialButton';
 import axios from 'axios';
-import How from './component/How';
-import Course from './component/Course';
 import Videos from './component/Videos';
 
 
@@ -173,15 +170,16 @@ class App extends React.Component {
                   as = {Link}
                   to = "/courses"
                   color = 'black'
-                  name='Courses'
+                  name='Course Content'
                   active={ activeItem === 'Course Content' }
                   onClick={this.handleItemClick}
+                  content = "Courses"
                 />
                 <Menu.Item
                   as = {Link}
                   to = "/videos"
                   color = 'black'                
-                  name="videos"
+                  name="Videos"
                   active = {activeItem === "Videos"}
                   onClick = {this.handleItemClick}
                   content = "Videos"
