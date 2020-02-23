@@ -1,9 +1,6 @@
 import React from 'react';
-import{ Header,Icon, Segment, Grid, Responsive,Form,Input, Button, GridRow, Message, Popup } from 'semantic-ui-react'
+import{ Header,Icon, Grid,Form,Input, Button, Message} from 'semantic-ui-react'
 import axios from 'axios';
-import {Link} from 'react-router-dom';
-import Class from './Class';
-
 export class URLBarContainer extends React.Component {
 
    static getEmailFromLocalStorage = () =>{
@@ -99,23 +96,17 @@ export class URLBarContainer extends React.Component {
             {
                 showURLBox:false,
                 showEmailBox:true,
-                // url:value
             }
         )
     }
 
     ShareLink = () => {
         return <>
-        {/* <Popup open={this.state.showShareLink}>
-            <Popup.Header>Info about</Popup.Header>
-            <Popup.Content> */}
             <Message alignItems="center" size="massive" icon>
                 <Message.Content>
                     <Message.Header>Invite people to the class <Icon name="share"/></Message.Header>
                     <div onClick={selectAll}> 
-                        {/* <Link to ={'/class'+this.link} component={Class}> */}
                             {this.link}
-                        {/* </Link> */}
                     </div>
                 </Message.Content>
             </Message>
@@ -124,41 +115,21 @@ export class URLBarContainer extends React.Component {
 
 }
 
-// const URLBar = (props) => {
-//     return <>
-//         <Grid container style={{marginTop:'50px'}}>
-//             <Form style = {{display:'flex', flexDirection:'column', justifyContent:'center'}}>
-//                 <Header as = 'h2' content = "Paste the Youtube Video Link you want to Learn with your friends" ></Header>
-//                 <Input style={{width:'300px'}} placeholder="Youtube URL"></Input>
-//                 { !props.isLoggedIn ? <Input style = {{width:'300px'}} type="email" placeholder="Enter Email for getting link"/>: <></>}
-//                 <Button style ={{width:'300px'}} primary type="submit">Create Class</Button>
-//              </Form>
-//         </Grid>
-//     </>;
-// };
-
-
 const EmailBox = (props) => {
     return <>
             <Header as = 'h2' content = "Enter your Email to get notifed once the class is ready" ></Header>
             <Input type="email" name="email" onChange={props.handleChange} placeholder="Email" style = {{width:'300px'}}/>
             <Button primary onClick = {props.onClick} type="submit" style ={{width:'300px',marginTop:'20px'}}>{props.text}</Button>
-            {/* </Form> */}
-        {/* </Grid> */}
     </>;
 };
 
 const URLBar = (props) => {
     return <>
-        {/* <Grid container> */}
-            {/* <Form> */}
                 <Header as = 'h2' content = "Paste the Youtube Video Link you want to Learn with your friends" ></Header>
                 <Input placeholder="Youtube URL" name="url" onChange={props.handleChange}style = {{width:'300px'}}></Input>
                 <Button primary onClick={props.onClick} style ={{width:'300px',marginTop:'20px'}}>{props.text}
                     {props.icon ? <Icon name='right arrow' />: <></> }
                 </Button>
-            {/* </Form> */}
-        {/* </Grid> */}
     </>;
 };
 

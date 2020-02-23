@@ -6,7 +6,7 @@ class SocialButton extends React.Component {
  
     render() {
         return (
-            <Button primary inverted onClick={this.props.triggerLogin} {...this.props}>
+            <Button size ="tiny" primary inverted onClick={this.props.triggerLogin} {...this.props}>
               <Icon name = 'google'></Icon>
               { this.props.children }
             </Button>

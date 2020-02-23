@@ -11,6 +11,8 @@ import CourseContent from './component/CourseContent';
 import SocialButton from './component/SocialButton';
 import axios from 'axios';
 import Videos from './component/Videos';
+import {isLoggedIn} from './utility/Utility';
+import CodeEditor from './component/CodeEditor';
 
 
 
@@ -23,7 +25,7 @@ class App extends React.Component {
       isInClass:null,
       summaryText:'',
       open:false,
-      isLoggedIn: this.isLoggedIn(),
+      isLoggedIn: isLoggedIn(),
       activeItem:"About",
       user:{},
       currentProvider:'',
@@ -44,14 +46,6 @@ class App extends React.Component {
     console.log("Leaving the class");
   }
 
-  isLoggedIn(){
-    var user = localStorage.getItem("user");
-    if (user === null){
-      return false;
-    }
-    return true;
-  }
-
   isInClass(){
     return true;
   }
@@ -64,7 +58,7 @@ class App extends React.Component {
 
   loginLogoutCallback() {
     this.setState({
-      isLoggedIn: this.isLoggedIn(),
+      isLoggedIn: isLoggedIn(),
       open:false
     })
   }
@@ -193,12 +187,20 @@ class App extends React.Component {
                   onClick={this.handleItemClick}
                   content="Contact"
                 />
+                <Menu.Item
+                  as = {Link}
+                  to = "/ide"
+                  color = 'black'                                
+                  name='Ide'
+                  active={ activeItem === 'Ide' }
+                  onClick={this.handleItemClick}
+                  content="Ide"
+                />
                 <Menu.Menu position='right'>
                   <Menu.Item>
                     {
                       this.state.isLoggedIn === false?
                       <SocialButton
-                        debug
                         provider='google'
                         appId='402641560768-86dk8cskulohe6a9fleer4uuudk1fl34.apps.googleusercontent.com'
                         onLoginSuccess={this.handleSocialLogin}
@@ -221,6 +223,7 @@ class App extends React.Component {
               <Route path={`/class/:classId`} component={EmbedExampleYouTube} />
               <Route path="/mentor" component={Mentor}/>
               <Route path="/courses" component={CourseContent}/>
+              <Route path="/ide" component={CodeEditor}/>
               <Route path="/videos" component={Videos}/>
 
               {/* <Course topic ={list}/> */}

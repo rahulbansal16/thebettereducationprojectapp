@@ -8,6 +8,10 @@
   margin:auto;
 }
 
+.CodeMirror { text-align: left!important; 
+  height: '70vh'!important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
